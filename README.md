@@ -1,7 +1,7 @@
 # Property Price Prediction using Machine Learning
 This project aims to predict property prices using various machine learning algorithms. It involves handling missing values, encoding categorical data, and applying different regression techniques to determine the best-performing model.
 
-📝 Dataset & Preprocessing
+📝 Dataset & Preprocessing:
 Missing values were handled appropriately.
 Categorical variables were processed using One-Hot Encoding (OHE) and Label Encoding.
 Data was split into 80% training and 20% testing.
