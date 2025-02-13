@@ -1,0 +1,33 @@
+Payments table triggers
+
+CREATE TABLE payment_logs (
+    log_id INT AUTO_INCREMENT PRIMARY KEY,
+    action_type ENUM('INSERT', 'UPDATE', 'DELETE') NOT NULL,
+    payment_id VARCHAR(255),
+    property_id VARCHAR(255),
+    user_id VARCHAR(255),
+    booking_id VARCHAR(255),
+    amount DECIMAL(10, 2),
+    payment_date DATETIME,
+    payment_method ENUM('Credit Note', 'Debit Note', 'Wallet', 'Cash'),
+    payment_status ENUM('Pending', 'Completed', 'Refunded'),
+    change_date DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+After Insert trigger :
+BEGIN
+    INSERT INTO payment_logs (action_type, payment_id, property_id, user_id, booking_id, amount, payment_date, payment_method, payment_status)
+    VALUES ('INSERT', NEW.Payment_id, NEW.property_id, NEW.user_id, NEW.Booking_id, NEW.Amount, NEW.Payment_Date, NEW.Payment_Method, NEW.Payment_Status);
+END;
+
+After Update trigger : 
+BEGIN
+    INSERT INTO payment_logs (action_type, payment_id, property_id, user_id, booking_id, amount, payment_date, payment_method, payment_status)
+    VALUES ('UPDATE', NEW.Payment_id, NEW.property_id, NEW.user_id, NEW.Booking_id, NEW.Amount, NEW.Payment_Date, NEW.Payment_Method, NEW.Payment_Status);
+END;
+
+After Delete trigger : 
+BEGIN
+    INSERT INTO payment_logs (action_type, payment_id, property_id, user_id, booking_id, amount, payment_date, payment_method, payment_status)
+    VALUES ('DELETE', OLD.Payment_id, OLD.property_id, OLD.user_id, OLD.Booking_id, OLD.Amount, OLD.Payment_Date, OLD.Payment_Method, OLD.Payment_Status);
+END;

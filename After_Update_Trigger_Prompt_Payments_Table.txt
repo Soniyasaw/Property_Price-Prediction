@@ -1,0 +1,5 @@
+IF NEW.Payment_Status = 'Completed' THEN
+        UPDATE coupons
+        SET status_ = 'Used' 
+        WHERE booking_id = NEW.booking_id;
+END IF;

@@ -1,0 +1,5 @@
+IF NEW.booking_status = 'Confirmed' THEN
+        UPDATE properties
+        SET status_ = 'Rented' 
+        WHERE property_id = NEW.property_id;
+END IF;
